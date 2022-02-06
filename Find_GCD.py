@@ -1,3 +1,5 @@
+# Program to calculate GCD or HCF of 2 numbers
+
 # A dictionary containing words as keys and numbers as their values
 word_to_digit_dict = {
     'zero': '0',
