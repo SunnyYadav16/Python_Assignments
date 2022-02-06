@@ -23,6 +23,7 @@ if __name__ == "__main__":
     try:
         my_input_list = input().split(',')
 
+        # If input string is empty
         if len(my_input_list) == 1 and "" in my_input_list:
             print([""])
         else:
