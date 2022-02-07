@@ -25,7 +25,7 @@ digit_to_word_dict = {
     '6': 'six',
     '7': 'seven',
     '8': 'eight',
-    '9': 'nine'
+    '9': 'nine',
 }
 
 
@@ -34,39 +34,54 @@ def word_to_digit(inputs):
     converted_digit = int(''.join(word_to_digit_dict[ele] for ele in inputs.split()))
     return converted_digit
 
+
 # Function to convert digits to words
 def digit_to_word(result_value_digit):
     result_value_words = ''
-    for value in str(result_value_digit):
-        result_value_words += digit_to_word_dict.get(value)
+    i = 0
+    while i < len(str(result_value_digit)):
+        result_value_words += digit_to_word_dict.get(str(result_value_digit)[i])
+        i += 1
     return result_value_words
+
+
+# Function for calculating the gcd of two numbers and returning the value
+def calculate_gcd(a_num, b_num):
+    i = 1
+    while i <= a_num and i <= b_num:
+        if a_num % i == 0 and b_num % i == 0:
+            common_factor.append(i)
+        i += 1
+
+    if len(common_factor) == 0:
+        return -1
+
+    # Taking the last value of the list as it is the biggest factor
+    result_value = common_factor[-1]
+
+    return result_value
 
 
 if __name__ == "__main__":
 
     try:
         first_input, second_input = input("Enter your first value: "), input("Enter your second value: ")
-        a_factor, b_factor = [], []
-        i = 1
+        common_factor = []
 
+        # Converting input words to digit
         a_number = word_to_digit(first_input)
         b_number = word_to_digit(second_input)
 
-        while i <= a_number and i <= b_number:
-            if a_number % i == 0:
-                a_factor.append(i)
-            if b_number % i == 0:
-                b_factor.append(i)
-            i += 1
+        # Calculating GCD of the number
+        gcd_answer = calculate_gcd(a_number, b_number)
 
-        # Creating a new list to find the intersection values that occurs in both lists
-        answer_list = [value for value in a_factor if value in b_factor]
-        result_value = answer_list[-1]
-
-        final_result = digit_to_word(result_value)
-        print(f"The calculated GCD of the numbers is: {final_result}")
-
+        if gcd_answer != -1:
+            # Converting the digits to words
+            final_result = digit_to_word(gcd_answer)
+            print(f"\nThe calculated GCD of the numbers is: {final_result}")
+        else:
+            print("\nGCD not found for the two numbers")
 
     except KeyError:
         print()
-        print("Error. Please insert numeric value in all words inputs like this: three six, one two, etc..")
+        print("Error. Please insert numeric value in all words inputs like this: three six, one, two, etc..")
