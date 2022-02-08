@@ -31,7 +31,15 @@ digit_to_word_dict = {
 
 # Function to convert words to digit
 def word_to_digit(inputs):
-    converted_digit = int(''.join(word_to_digit_dict[ele] for ele in inputs.split()))
+    # converted_digit = int(''.join(word_to_digit_dict[ele] for ele in inputs.split()))
+    start, end = 0, 0
+    converted_digit = ''
+    while end < len(inputs):
+        if word_to_digit_dict.get(inputs[start:end+1]):
+            converted_digit += word_to_digit_dict.get(inputs[start:end+1])
+
+            start = end + 1
+        end += 1
     return converted_digit
 
 
@@ -69,8 +77,8 @@ if __name__ == "__main__":
         common_factor = []
 
         # Converting input words to digit
-        a_number = word_to_digit(first_input)
-        b_number = word_to_digit(second_input)
+        a_number = int(word_to_digit(first_input))
+        b_number = int(word_to_digit(second_input))
 
         # Calculating GCD of the number
         gcd_answer = calculate_gcd(a_number, b_number)
