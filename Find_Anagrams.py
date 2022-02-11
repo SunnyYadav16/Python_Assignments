@@ -16,7 +16,7 @@ def find_anagram(my_list):
             my_dict[my_key].append(word)
 
     result = []
-    for key, value in my_dict.items():
+    for value in my_dict.values():
         result.append(value)
     return result
 
